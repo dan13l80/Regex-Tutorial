@@ -1,11 +1,11 @@
 # Regex-Tutorial
 
 ## Summary
-This is a tutorial on how Regex is used to match a Hex Value . 
+This is a tutorial on how Regex is used to match a Hex Value .  They are regularly used to validate input.
 `/^#?([a-f0-9]{6}|[a-f0-9]{3})$/` is the syntax that I will be using. 
 
-Hex Code is a way to identify color. It is always in a 6-digit alphanumeric sequence. 
-The regex string I am using will return a # Number sign character followed by either a 6 or 3 character length code with only lowercase letters a,b,c,d,e,or f or numbers 0,1,2,3,4,5,6,7,8, or 9. 
+Hex Code is always in a 6-digit alphanumeric sequence. Hexadecimal color codes are used to tell the computers the intensity of a colors red, green and blue components, each represented by eight bits.
+The regex string will return a # Number sign character followed by either a 6 or 3 character length code with only lowercase letters a,b,c,d,e,or f or numbers 0,1,2,3,4,5,6,7,8, or 9. 
 
 
 ## Table of Contents
@@ -24,20 +24,23 @@ The regex string I am using will return a # Number sign character followed by ei
 ### Anchors
 The starting ^ caret and ending $ dollar sign are both anchors in the example string. 
 `/^#?([a-f0-9]{6}|[a-f0-9]{3})$/`
-* The ^caret matches at the start of the string the regex pattern is applied to.
-* The # Number Sign following the starting ^caret is a literal character and a #Number Sign **MUST** be at the start of the string. 
-* The $ dollar sign matches at the end of the string the regex pattern is applied to. This signifies the end of the string. 
+If you have a string consisting of multiple lines, like first line\nsecond line (where \n indicates a line break), it is often desirable to work with lines, rather than the entire string. 
+Therefore, most regex engines discussed in this tutorial have the option to expand the meaning of both anchors. ^ can then match at the start of the string (before the f in the above string), as well as after each line break (between \n and s). Likewise, $ still matches at the end of the string (after the last e), and also before every line break (between e and \n).
 
 
 ### Quantifiers
-Each quanifier denotes how many times the previous token will be matched. 
-There are 3 quanitfiers in the example syntax. `/^#?([a-f0-9]{6}|[a-f0-9]{3})$/`
+Quantifiers indicate numbers of characters or expressions to match. The quantifier for our example is the section in the curly braces.
 
-1. The first $ Dollar Sign ( which I will also go over in the Greedy section) This signifies that the # Number Sign will match 0-1 times. 
-    
-2. {6} This signifies that the previous token [a-f0-9] will have 6 characters match within that set.
-    
-3. {3} This signifies that the previous token [a-f0-9] will have 3 characters match within that set.
+? - matches the pattern zero or one time {} - curly brackets mean that the pattern matches exactly n number of times. In this case, 6 or 3 times.
+
+* Exact count {n}
+A number in curly braces {n}is the simplest quantifier. When you append it to a character or character class, it specifies how many characters or character classes you want to match.
+For example, the regular expression /\d{4}/ matches a four-digit number. It is the same as /\d\d\d\d/:
+
+* The range {n,m}
+The range matches a character or character class from n to m times.
+
+For example, to find numbers that have two, three or four digits, you use the regular expression /\d{2,4}/g
 
 ### OR Operator
 The example syntax uses an OR operator known as | Vertical line or pipe. 
